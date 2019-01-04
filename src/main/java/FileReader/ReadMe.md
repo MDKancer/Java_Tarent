@@ -1,0 +1,1 @@
+Dieses Paket soll dafür  verantwortlich sein, zu ermöglichen die Dateien zu lesen und  eine Rückmeldung über das Erlesene in Form von Typ String zu geben.

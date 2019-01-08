@@ -12,6 +12,7 @@ import StatesProgramm.FrontendState;
 import StatesProgramm.SortTyp;
 import StatesProgramm.StateManager;
 import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class UserManager implements IO{
     public static StateManager<BackendState> backendState = new StateManager<BackendState>();
     public static StateManager<FrontendState> frontendState = new StateManager<FrontendState>();
     public static StateManager<SortTyp> sortState = new StateManager<SortTyp>();
+
     private String path;
     private Integer TopX;
     private ScanData scandata ;
@@ -41,13 +43,18 @@ public class UserManager implements IO{
         this.path = path;
         this.scandata = new ScanData(this.path);
     }
+
+    public String getPath() {
+        return path;
+    }
     public void setInputArea(InputArea inputArea){
         this.ia = inputArea;
     }
 
     public JPanel getResultArea(List<File> files){
         panel = new JPanel();
-        panel.setBounds(10,120,1004,500);
+        panel.setBackground(new Color(106, 90, 205));
+        panel.setBounds(10,160,1004,500);
         panel.setLayout(null);
         panel.add(new ResultTableFiles(files,this.ia));
         panel.setVisible(true);

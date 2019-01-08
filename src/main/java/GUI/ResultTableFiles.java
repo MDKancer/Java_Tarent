@@ -1,13 +1,11 @@
+/**
+ * @author Daniel Lozanu
+ */
 package GUI;
 
 import Cloud.Cache;
-import IOManager.UserManager;
-
 import javax.swing.*;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellEditor;
-import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -58,10 +56,9 @@ public class ResultTableFiles extends JTable {
                     getDate(tempFile.get(i).lastModified()),
                     getTyp(tempFile.get(i).length()),
                     tempFile.get(i).isFile() ? " (File)": " (Directory)",
-                    " "
+                    tempFile.get(i).getAbsolutePath()
             };
               model.addRow(temp);
-
         }
     }
 
@@ -106,4 +103,5 @@ public class ResultTableFiles extends JTable {
         }
         return null;
     }
+
 }

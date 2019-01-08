@@ -69,7 +69,7 @@ public class ScanData extends ToList {
         Cache.setResultData(new ArrayList<File>());
         UserManager.backendState.setCurrentState(BackendState.Sort);
         UserManager.frontendState.setCurrentState(FrontendState.Wait);
-        Top_x = Top_x > list().size() ? list().size() : Top_x;
+        Top_x = Top_x > list().size() || Top_x == 0 ? list().size() : Top_x;
         List<File> list = list();
         for (int i = 0; i < Top_x; i++) {
             switch (UserManager.sortState.getCurrentState()) {

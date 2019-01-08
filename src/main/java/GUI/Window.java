@@ -1,9 +1,6 @@
 package GUI;
 
-import DataErrorType.InputError;
 import IOManager.UserManager;
-import StatesProgramm.BackendState;
-
 import javax.swing.*;
 
 public class Window extends JFrame {
@@ -18,19 +15,4 @@ public class Window extends JFrame {
         setVisible(true);
     }
 
-
-
-    public void Start(){
-        try {
-            um.askForAction();
-        } catch (InputError inputError) {
-            System.err.println(inputError.getMessage());
-            UserManager.backendState.setCurrentState(BackendState.CriticalError);
-            try {
-                um.askForAction();
-            } catch (InputError inputError1) {
-                System.err.println(inputError.getMessage());
-            }
-        }
-    }
 }

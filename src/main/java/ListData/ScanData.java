@@ -26,9 +26,6 @@ public class ScanData extends ToList {
     // und den Wert wurde der Pfad von Hauptverzeichnis.
     private String mainDirectory;
 
-
-
-
     /**
      * Es wurde beimm Initialiesieren aller Dataien und Unter- und Verzeichnise in Cache gespeichert
      * und sortiert nach Groesse und noch nach Anzahl der Dateien.
@@ -44,7 +41,7 @@ public class ScanData extends ToList {
 
     protected void scan() {
         File dir = new File(this.address);
-        UserManager.backendState.setCurrentState(BackendState.CollectData);
+        UserManager.getBackendState().setCurrentState(BackendState.CollectData);
         if(dir.exists()){
             tempFiles = Arrays.asList(dir.listFiles());
 
@@ -67,12 +64,12 @@ public class ScanData extends ToList {
 
     public List<File> getTopFiles(int Top_x) {
         Cache.setResultData(new ArrayList<File>());
-        UserManager.backendState.setCurrentState(BackendState.Sort);
-        UserManager.frontendState.setCurrentState(FrontendState.Wait);
+        UserManager.getBackendState().setCurrentState(BackendState.Sort);
+        UserManager.getFrontendState().setCurrentState(FrontendState.Wait);
         Top_x = Top_x > list().size() || Top_x == 0 ? list().size() : Top_x;
         List<File> list = list();
         for (int i = 0; i < Top_x; i++) {
-            switch (UserManager.sortState.getCurrentState()) {
+            switch (UserManager.getSortState().getCurrentState()) {
                 case SortByDate:
                     Cache.getResultData().add(sf.sortDate(list).get(i));
                     break;
@@ -99,7 +96,7 @@ public class ScanData extends ToList {
                     break;
             }
         }
-        UserManager.frontendState.setCurrentState(FrontendState.Request);
+        UserManager.getFrontendState().setCurrentState(FrontendState.Request);
         return Cache.getResultData();
     }
 
@@ -111,7 +108,7 @@ public class ScanData extends ToList {
                 tempFile.add(item.getKey());
             }
         }
-        UserManager.frontendState.setCurrentState(FrontendState.Request);
+        UserManager.getFrontendState().setCurrentState(FrontendState.Request);
         return tempFile;
     }
 }

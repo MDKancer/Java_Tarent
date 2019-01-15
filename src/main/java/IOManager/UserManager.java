@@ -17,9 +17,10 @@ import java.io.File;
 import java.util.List;
 
 public class UserManager implements IO{
-    public static StateManager<BackendState> backendState = new StateManager<BackendState>();
-    public static StateManager<FrontendState> frontendState = new StateManager<FrontendState>();
-    public static StateManager<SortTyp> sortState = new StateManager<SortTyp>();
+
+    private static StateManager<BackendState> backendState = new StateManager<BackendState>();
+    private static StateManager<FrontendState> frontendState = new StateManager<FrontendState>();
+    private static StateManager<SortTyp> sortState = new StateManager<SortTyp>();
 
     private String path;
     private Integer TopX;
@@ -27,12 +28,22 @@ public class UserManager implements IO{
     private JPanel panel;
     private InputArea ia;
 
-//  TODO : Ich muss erstmal alles strukturieren und abtrakt tun und vieleich gibts eine andere Möglichkeit dieser Datenzu speichern
-
+    /**
+     * Es wurde eine Liste von Dateien die zum ZielVerzeichnis gehören gesammelt und
+     * @return zurück wurde ein schon JPanel mit der fertige Tabelle von alle Dateien generiert
+     * @throws InputError
+     */
     @Override
     public JPanel askForAction() throws InputError {
         return getResultArea(this.scandata.getTopFiles(this.TopX));
     }
+
+    public static StateManager<BackendState> getBackendState() { return backendState; }
+
+    public static StateManager<FrontendState> getFrontendState() { return frontendState; }
+
+    public static StateManager<SortTyp> getSortState() { return sortState; }
+
     public void setTopX(Integer TopX){ this.TopX = TopX; }
 
     /**
@@ -51,9 +62,14 @@ public class UserManager implements IO{
         this.ia = inputArea;
     }
 
-    public JPanel getResultArea(List<File> files){
+    /**
+     * Es wurde ein JPanel für die Ergebnistabele erstellt und direkt konfiguriert
+     * @param files ist benötigt um die Information zu der Ergebnistabele weitergeleiter werden
+     * @return
+     */
+    private JPanel getResultArea(List<File> files){
         panel = new JPanel();
-        panel.setBackground(new Color(106, 90, 205));
+        panel.setBackground(ia.getBackground());
         panel.setBounds(10,160,1004,500);
         panel.setLayout(null);
         panel.add(new ResultTableFiles(files,this.ia));

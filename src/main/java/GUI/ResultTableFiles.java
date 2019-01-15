@@ -49,6 +49,10 @@ public class ResultTableFiles extends JTable {
         this.getColumnModel().getColumn(4).setHeaderValue("Status");
     }
 
+    /**
+     * Es wurde alle Daten von Dateien in eine Reihe  hinzugefügt.
+     * @param tempFile
+     */
     private void getData(List<File> tempFile){
         for (int i = 0; i< tempFile.size(); i++) {
             String[] temp = {
@@ -62,6 +66,10 @@ public class ResultTableFiles extends JTable {
         }
     }
 
+    /**
+     * Es wurde für jede Reihe ein Mouse Event hinzugefügt,
+     * um zu simulieren als ob das Verzeichnis wurde geöffnet
+     */
     private void setTableEventListner(){
         this.addMouseListener(new MouseAdapter() {
             @Override

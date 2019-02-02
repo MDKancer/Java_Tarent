@@ -14,7 +14,7 @@ public abstract class ToList {
      *  Ein temporeres Speicher für alle gefundene Dateien
      *   und Unter - /Unter-Unter-/ Verzeichniste in Hauptverzeichnis
      */
-    protected List<File> tempFiles = new ArrayList<File>();
+    protected List<File> tempFiles = new ArrayList<>();
 
     /**
      * Sammelt alle Dateien in diesem verzeichnis und im Unterverzeichnis
@@ -31,7 +31,7 @@ public abstract class ToList {
 
     /**
      * Sammelt und liefert den ganzen Inhlat von dem Verzeichnis.
-     * @return
+     * @return eine Liste von Typ File
      */
     public abstract List<File> list();
 

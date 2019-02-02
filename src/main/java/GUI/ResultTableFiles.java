@@ -20,7 +20,8 @@ public class ResultTableFiles extends JTable {
         this.inputArea = ia;
         setBounds(10,10,1004,500);
         setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 50));
-        //ersetzt Margin left um 10 und top um 1
+        setBorder(ia.getRedBorder());
+        //ersetzt Margin left um 10 und top um 0
         setIntercellSpacing(new Dimension(10,0));
 
         //dass ist für die Cells nicht äendern können
@@ -30,6 +31,9 @@ public class ResultTableFiles extends JTable {
         setAutoscrolls(true);
         setColumns();
         getData(tempFile);
+        //Es wurde wieder die Ganze Tabele auf dem aktuellen/neuen Stand erstellt.
+        revalidate();
+        repaint();
         setVisible(true);
     }
 

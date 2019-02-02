@@ -12,14 +12,13 @@ public class Reader {
     private BufferedReader bufferedReader;
 
     public Reader(String file){
-        String fileName = file;
+
         try {
-            this.fileReader = new FileReader(fileName);
+            this.fileReader = new FileReader(file);
             this.bufferedReader = new BufferedReader(fileReader);
         } catch(FileNotFoundException ex) {
             System.err.println(
-                    "Datei '" +
-                            fileName + "' wurde nicht gefunden!!!");
+                    "Datei '" + file + "' wurde nicht gefunden!!!");
         }
     }
 

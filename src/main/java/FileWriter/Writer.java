@@ -45,8 +45,6 @@ public class Writer {
             fileOutputStream = new FileOutputStream(TargetFile);
 
             fileOutputStream.write(fileInputStream.read());
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

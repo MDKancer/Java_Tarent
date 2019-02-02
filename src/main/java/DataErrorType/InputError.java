@@ -15,7 +15,7 @@ public class InputError extends Exception {
 
     /**
      *
-     * @throws InputError
+     * @throws InputError Eingabefehler
      */
     public static void getError () throws InputError{ throw new InputError(); }
 

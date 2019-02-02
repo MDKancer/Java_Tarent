@@ -7,33 +7,41 @@ import java.io.File;
 import java.util.*;
 
 /**
- * Es wurde ein generisches Container erstellt um die Dataien und ihre Verzeichnise  gepeichert.
+ * Es wurde ein  Container erstellt um die Dataien und ihre Verzeichnise  speichern.
  */
 public class Cache  {
 
-
-    private static Map<File, File> cloud = new HashMap<File, File>();
-    private static List<File> maxCountDirectory = new ArrayList<File>();
-    private static Map<File,Long> SizeDirectorys = new HashMap<File, Long>();
+    /**
+     * Hier es wird alle Dateien / Verzeichnise und Unterdateien / Unterverzeichnise
+     * die zu HauptVerzeichnis gehören.
+     */
+    private static Map<File, File> cloud = new HashMap<>();
+    /**
+     * Hier es wird die Verzeichnise nach Anzahl der Dateien gespeichert.
+     */
+    private static List<File> maxCountDirectory = new ArrayList<>();
+    /**
+     * Hier es wird die alle Verzeichnisse und UnterVerzeichnisse und seiner Größe gespeichert.
+     */
+    private static Map<File,Long> SizeDirectorys = new HashMap<>();
+    /**
+     * Hier es wird die fertige Liste für die Benutzer gespeichert.
+     */
     private static List<File> resultData = new ArrayList<>();
 
+
+
     // hier wird temporär alle Dataiei die einer Verzeichnis gehören
-    private static List<File> tempFile = new ArrayList<File>();
+    private static List<File> tempFile = new ArrayList<>();
 
     public static List<File> getResultData() {
         return resultData;
     }
-
-    public static void setResultData(List<File> resultData) {
-        Cache.resultData = resultData;
-    }
-
-
     /**
      * Hier speichern der Datei oder Verzeichnis als Index / Schluessel
      *  und den Wert soll sein Elternverzeichnis sein.
-     * @param file
-     * @param Verzeichnis
+     * @param file Datei
+     * @param Verzeichnis und DateiVerzeichnis
      */
     public static void addFile(File file, File Verzeichnis){
 
@@ -72,7 +80,7 @@ public class Cache  {
     public static List<File> getAllFilesFromDirectory(String DirectoryName){
         tempFile.clear();
         for (Map.Entry<File,File> item : cloud.entrySet() ) {
-            if(DirectoryName.equals(item.getValue())){
+            if(DirectoryName.equals(item.getValue().getName())){
                 tempFile.add(item.getKey());
             }
         }

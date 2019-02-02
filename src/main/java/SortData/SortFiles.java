@@ -8,7 +8,8 @@ import java.io.File;
 import java.util.*;
 
 public class SortFiles {
-
+    // TODO:    Ich muss noch mal alles in dieser Klasse überprüfen , ob nicht was doppelt ist.
+    //  Und ich muss hier noch die geschwindigkeit überprüfen.
     /**
      * Es wurde HashMap nach Werte  aufsteigent sortiert.
      * @param map
@@ -17,19 +18,13 @@ public class SortFiles {
      * @return  ->  ein schon sortiertes Map
      */
     public static <K,V extends Comparable<V>> Map<K,V> sortByValues(final Map<K,V> map) {
-        Comparator<K> valuesComparator = new Comparator<K>() {
-            public int compare(K k1, K k2) {
-                int compare = map.get(k1).compareTo(map.get(k2));
+        Comparator<K> valuesComparator = (k1, k2) -> {
+            int compare = map.get(k1).compareTo(map.get(k2));
 
-                if(compare == 0) {
-                    return  1;
-                } else {
-                    return compare;
-                }
-            }
+            if(compare == 0) { return  1; }
+            else { return compare; }
         };
-
-        Map<K,V> SortedByValues = new TreeMap<K,V>(valuesComparator);
+        Map<K,V> SortedByValues = new TreeMap<>(valuesComparator);
         SortedByValues.putAll(map);
 
         return SortedByValues;
@@ -52,7 +47,6 @@ public class SortFiles {
         for (int i = 1; i < list.size(); i++) {
             for (int j = 0; j < list.size()-1; j++) {
                     if (list.get(j).lastModified() > list.get(j + 1).lastModified()) {
-
                         temp = list.get(j);
                         list.set(j, list.get(j+1));
                         list.set(j+1, temp);
@@ -98,10 +92,7 @@ public class SortFiles {
     }
     public List<File> sortMaxFilesSizeDirectory(){
         addDirectorysSize();
-        List<File> tempFile = new ArrayList<File>();
-        tempFile.addAll(SetSizeAndCountOfDirectorys().keySet());
-
-        return tempFile;
+        return new ArrayList<>(SetSizeAndCountOfDirectorys().keySet());
     }
 
 
@@ -119,13 +110,10 @@ public class SortFiles {
             File parentDir = file.getParentFile();
             if(Cache.getSizeDirectorys().containsKey(parentDir)) {
                 Cache.getSizeDirectorys().replace(parentDir, Cache.getSizeDirectorys().get(parentDir)+size) ;
-            } else {
-                Cache.getSizeDirectorys().put(file,size);
-            }
+            } else { Cache.getSizeDirectorys().put(file,size); }
 
         }
         sortByValues(Cache.getSizeDirectorys());
-
     }
 
     /**
@@ -142,5 +130,4 @@ public class SortFiles {
         }
         return size;
     }
-
 }
